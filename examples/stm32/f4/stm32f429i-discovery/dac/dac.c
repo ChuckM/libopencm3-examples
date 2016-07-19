@@ -23,14 +23,9 @@ clock_setup(void) {
 /* Turn off anything that we don't want on for everything */
 static void
 dac_teardown(void) {
-     dma_stream_reset(DMA1, DMA_STREAM6);
-
-     timer_reset(TIM6);
-
-     dac_disable(CHANNEL_2);
-     dac_trigger_disable(CHANNEL_2);
-     dac_dma_disable(CHANNEL_2);
-     dac_disable_waveform_generation(CHANNEL_2);
+     rcc_periph_reset_pulse(RST_DMA1);
+     rcc_periph_reset_pulse(RST_TIM6);
+     rcc_periph_reset_pulse(RST_DAC);
 }
 
 /* Setup shared by all the DAC exapmles. */
